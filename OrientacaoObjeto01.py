@@ -10,7 +10,7 @@
 
 #classes
 class TV:
-
+#sem o self não vai funcionar, fora da classe
     def __init__(self):
         #atributos da tv
         self.cor = 'preta'
@@ -18,6 +18,7 @@ class TV:
         self.tamanho = 55
         self.canal = "Netflix"
         self.volume = 10
+
 
     def mudar_canal(self):
         self.canal = "Disney+"

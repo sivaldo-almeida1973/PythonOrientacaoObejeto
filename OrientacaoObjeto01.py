@@ -19,10 +19,10 @@ class TV:
         self.canal = "Netflix"
         self.volume = 10
 
-    #metodo mudar_canal
-    def mudar_canal(self):
-        self.canal = "Disney+"
-
+    #metodo mudar_canal , com parametro novo_canal
+    def mudar_canal(self, novo_canal):
+        self.canal = novo_canal
+        print(f'Canal alterado para {novo_canal}')
 
 
 #programa
@@ -31,8 +31,9 @@ class TV:
 tv_sala = TV()
 tv_quarto = TV()
 
-#recebe mudar_canal, executar o metodo tem que ter ()
-tv_sala.mudar_canal()
+#recebe mudar_canal, executar o metodo tem que ter (),com paramtro
+tv_sala.mudar_canal("Globo")
+tv_quarto.mudar_canal("Youtube")
 
 #mudar cor tv_sala, mudar atributo não precisa ()
 tv_sala.cor = "Azul"
@@ -41,4 +42,3 @@ print(tv_sala.canal)
 print(tv_quarto.canal)
 print(tv_sala.cor)
 
-print(tv_sala)

@@ -11,6 +11,7 @@
 #classes
 class TV:
 #sem o self não vai funcionar, fora da classe
+#os parametros passados , são padrão
     def __init__(self):
         #atributos da tv
         self.cor = 'preta'

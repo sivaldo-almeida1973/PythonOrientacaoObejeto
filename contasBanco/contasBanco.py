@@ -7,6 +7,7 @@ class ContaCorrente():
         self.cpf = cpf
         self.conta = conta
         self.saldo = 0
+        self.limite = None
 
     #metodo consultar saldo
     def consultar_saldo(self):
@@ -15,8 +16,16 @@ class ContaCorrente():
     def depositar(self, valor):
         self.saldo += valor
 
+    def limite_conta(self):
+        self.limite = -1000
+        return self.limite
+
     def sacar_dinheiro(self, valor):
-        self.saldo -= valor
+        if self.saldo -valor < self.limite_conta():
+            print('Saldo insuficiente!')
+            self.consultar_saldo()
+        else:
+            self.saldo -= valor
 
 #programa principal
 #criar uma instancia da class ContaCorrente
@@ -31,9 +40,10 @@ conta_sivaldo.consultar_saldo()
 conta_sivaldo.saldo= 10000
 conta_sivaldo.consultar_saldo()
 
-
 #sacar dinheiro
-conta_sivaldo.sacar_dinheiro(1000)
+conta_sivaldo.sacar_dinheiro(10500)
+
+print("saldo final")
 conta_sivaldo.consultar_saldo()
 
 

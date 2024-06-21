@@ -51,6 +51,13 @@ class ContaCorrente():
         for transacao in self.transacoes:
             print(transacao)
 
+
+    def transferir(self, valor, conta_destino):
+        self.saldo -= valor
+        self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
+        conta_destino.saldo += valor
+        conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
+
 #programa principal
 #criar uma instancia da class ContaCorrente
 conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", 222-34, 340)
@@ -66,9 +73,9 @@ conta_sivaldo.consultar_saldo()
 conta_sivaldo.depositar(10000)
 conta_sivaldo.consultar_saldo()
 
-time.sleep(10)  #ver diferença de tempo (10 segundo)
+time.sleep(3)  #ver diferença de tempo (10 segundo)
 #sacar dinheiro
-conta_sivaldo.sacar_dinheiro(10500)
+conta_sivaldo.sacar_dinheiro(500)
 
 print("saldo final")
 conta_sivaldo.consultar_saldo()
@@ -77,3 +84,16 @@ conta_sivaldo.consultar_limite_cheque_especial()
 
 print('-'*29)
 conta_sivaldo.consultar_historico_transacoes()
+
+print('-'*29)
+conta_mae = ContaCorrente("Maria", "333.222.444-44", 235, 2345)
+conta_sivaldo.transferir(1000, conta_mae)
+
+print('-'*29)
+conta_sivaldo.consultar_saldo()
+conta_mae.consultar_saldo()
+
+print('-'*29)
+conta_sivaldo.consultar_historico_transacoes()
+print('-'*29)
+conta_mae.consultar_historico_transacoes()

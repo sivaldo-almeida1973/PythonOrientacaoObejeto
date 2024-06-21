@@ -2,10 +2,11 @@
 class ContaCorrente():
 
      #funcao par criar conta, o que precisa
-    def __init__(self, nome, cpf,conta):
+    def __init__(self, nome, cpf, conta, agencia):
         self.nome = nome
         self.cpf = cpf
         self.conta = conta
+        self.agencia = agencia
         self.saldo = 0
         self.limite = None
 
@@ -32,11 +33,13 @@ class ContaCorrente():
 
 #programa principal
 #criar uma instancia da class ContaCorrente
-conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", "222-34")
+conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", 222-34, 340)
 
 print(f'Cliente: {conta_sivaldo.nome}')
 print(f'CPF: {conta_sivaldo.cpf}')
 print(f'Conta: {conta_sivaldo.conta}')
+print(f'Agência: {conta_sivaldo.agencia}')
+
 conta_sivaldo.consultar_saldo()
 
 #depositar dinheiro

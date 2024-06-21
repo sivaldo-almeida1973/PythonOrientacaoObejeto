@@ -16,16 +16,19 @@ class ContaCorrente():
     def depositar(self, valor):
         self.saldo += valor
 
-    def limite_conta(self):
+    def _limite_conta(self):    #metodo privado  _limite_conta(self) , para se usado somente dentro da classe
         self.limite = -1000
         return self.limite
 
     def sacar_dinheiro(self, valor):
-        if self.saldo -valor < self.limite_conta():
+        if self.saldo -valor < self._limite_conta():
             print('Saldo insuficiente!')
             self.consultar_saldo()
         else:
             self.saldo -= valor
+
+    def consultar_limite_cheque_especial(self):
+        print(f'Seu limite de Cheque especial é de: R${self._limite_conta():,.2f}')
 
 #programa principal
 #criar uma instancia da class ContaCorrente
@@ -45,5 +48,7 @@ conta_sivaldo.sacar_dinheiro(10500)
 
 print("saldo final")
 conta_sivaldo.consultar_saldo()
+
+conta_sivaldo.consultar_limite_cheque_especial()
 
 

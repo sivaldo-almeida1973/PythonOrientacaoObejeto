@@ -27,13 +27,13 @@ class ContaCorrente():
 
      #funcao par criar conta, o que precisa
     def __init__(self, nome, cpf, conta, agencia):
-        self.nome = nome
-        self.cpf = cpf
-        self.conta = conta
-        self.agencia = agencia
-        self.saldo = 0
-        self.limite = None
-        self.transacoes = []
+        self._nome = nome
+        self._cpf = cpf
+        self._conta = conta
+        self._agencia = agencia
+        self._saldo = 0
+        self._limite = None
+        self._transacoes = []
 
     #metodo consultar saldo
     def consultar_saldo(self):
@@ -42,23 +42,23 @@ class ContaCorrente():
            Não há parâmetros necessários.
         :return:
         """
-        print(f"Seu saldo atual é de: R${self.saldo:,.2f}")
+        print(f"Seu saldo atual é de: R${self._saldo:,.2f}")
 
     def depositar(self, valor): #transacao------
-        self.saldo += valor
-        self.transacoes.append((valor, self.saldo, ContaCorrente._data_hora()))
+        self._saldo += valor
+        self._transacoes.append((valor, self._saldo, ContaCorrente._data_hora()))
 
     def _limite_conta(self):    #metodo privado  _limite_conta(self) , para se usado somente dentro da classe
-        self.limite = -1000
-        return self.limite
+        self._limite = -1000
+        return self._limite
 
     def sacar_dinheiro(self, valor): #transacao----------
-        if self.saldo -valor < self._limite_conta():
+        if self._saldo -valor < self._limite_conta():
             print('Saldo insuficiente!')
             self.consultar_saldo()
         else:
-            self.saldo -= valor
-            self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
+            self._saldo -= valor
+            self._transacoes.append((-valor, self._saldo, ContaCorrente._data_hora()))
 
     def consultar_limite_cheque_especial(self):
         print(f'Seu limite de Cheque especial é de: R${self._limite_conta():,.2f}')
@@ -66,24 +66,24 @@ class ContaCorrente():
     def consultar_historico_transacoes(self):
         print("Historico de Transações: ")
         print('Valor, Saldo, Dta e Hora')
-        for transacao in self.transacoes:
+        for transacao in self._transacoes:
             print(transacao)
 
 
     def transferir(self, valor, conta_destino):
-        self.saldo -= valor
-        self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
-        conta_destino.saldo += valor
-        conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
+        self._saldo -= valor
+        self._transacoes.append((-valor, self._saldo, ContaCorrente._data_hora()))
+        conta_destino._saldo += valor
+        conta_destino._transacoes.append((valor, conta_destino._saldo, ContaCorrente._data_hora()))
 
 #programa principal
 #criar uma instancia da class ContaCorrente
 conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", 222-34, 340)
 
-print(f'Cliente: {conta_sivaldo.nome}')
-print(f'CPF: {conta_sivaldo.cpf}')
-print(f'Conta: {conta_sivaldo.conta}')
-print(f'Agência: {conta_sivaldo.agencia}')
+print(f'Cliente: {conta_sivaldo._nome}')
+print(f'CPF: {conta_sivaldo._cpf}')
+print(f'Conta: {conta_sivaldo._conta}')
+print(f'Agência: {conta_sivaldo._agencia}')
 
 conta_sivaldo.consultar_saldo()
 

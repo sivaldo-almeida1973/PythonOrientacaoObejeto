@@ -4,6 +4,19 @@ from datetime import datetime
 import pytz
 
 class ContaCorrente():
+    """
+    Cria um objeto ContaCorrente para gerenciar as contas dos clientes.
+
+    Attibutos:
+         nome (str): Nome do Cliente
+         cpf (str): CPF do Cliente
+         agencia: Agencia do responsável pela conta
+         num_conta:  Número da Conta Corrente do cliente
+         saldo: Saldo disponivel na cona do cliente
+         limite: Limite de cheque especial do cliente
+         transações: Histórico de transações do cliente
+
+    """
 
     @staticmethod
     def _data_hora():
@@ -24,6 +37,11 @@ class ContaCorrente():
 
     #metodo consultar saldo
     def consultar_saldo(self):
+        """
+           Exibe o saldo atual da conta do cliente
+           Não há parâmetros necessários.
+        :return:
+        """
         print(f"Seu saldo atual é de: R${self.saldo:,.2f}")
 
     def depositar(self, valor): #transacao------
@@ -86,7 +104,9 @@ print('-'*29)
 conta_sivaldo.consultar_historico_transacoes()
 
 print('-'*29)
+#criar contacorrente da mae
 conta_mae = ContaCorrente("Maria", "333.222.444-44", 235, 2345)
+#tranferir valor do sivaldo para a mae
 conta_sivaldo.transferir(1000, conta_mae)
 
 print('-'*29)
@@ -97,3 +117,5 @@ print('-'*29)
 conta_sivaldo.consultar_historico_transacoes()
 print('-'*29)
 conta_mae.consultar_historico_transacoes()
+
+help(ContaCorrente)

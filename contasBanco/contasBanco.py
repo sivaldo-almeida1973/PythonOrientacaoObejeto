@@ -26,14 +26,15 @@ class ContaCorrente():
 
 
      #funcao par criar conta, o que precisa
-    def __init__(self, nome, cpf, conta, agencia):
+    def __init__(self, nome, cpf, agencia, num_conta):
         self._nome = nome
         self._cpf = cpf
-        self._conta = conta
-        self._agencia = agencia
         self._saldo = 0
         self._limite = None
+        self._agencia = agencia
+        self._num_conta = num_conta
         self._transacoes = []
+        self._cartoes = []
 
     #metodo consultar saldo
     def consultar_saldo(self):
@@ -76,46 +77,25 @@ class ContaCorrente():
         conta_destino._saldo += valor
         conta_destino._transacoes.append((valor, conta_destino._saldo, ContaCorrente._data_hora()))
 
+class CartaoCredito:
+    def __init__(self, titular, conta_corrente):
+        self.numero = 123
+        self.titular = titular
+        self.validade = None
+        self.cod_seguranca = None
+        self.limite = None
+        self.conta_corrente = conta_corrente
+        conta_corrente._cartoes.append(self) # self pega toda instacnia da classe  CartaoCredito e adiciona em cartoes
+        #conta_corrente._cartoes.append(self.numero) # self pega somente o numero e adiciona em cartoes
+
+
+
+
 #programa principal
 #criar uma instancia da class ContaCorrente
 conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", 222-34, 340)
+cartao_sivaldo = CartaoCredito('Sivaldo', conta_sivaldo)
+print(cartao_sivaldo.conta_corrente._num_conta)
+print(cartao_sivaldo.titular)
 
-print(f'Cliente: {conta_sivaldo._nome}')
-print(f'CPF: {conta_sivaldo._cpf}')
-print(f'Conta: {conta_sivaldo._conta}')
-print(f'Agência: {conta_sivaldo._agencia}')
-
-conta_sivaldo.consultar_saldo()
-
-#depositar dinheiro
-conta_sivaldo.depositar(10000)
-conta_sivaldo.consultar_saldo()
-
-time.sleep(3)  #ver diferença de tempo (10 segundo)
-#sacar dinheiro
-conta_sivaldo.sacar_dinheiro(500)
-
-print("saldo final")
-conta_sivaldo.consultar_saldo()
-
-conta_sivaldo.consultar_limite_cheque_especial()
-
-print('-'*29)
-conta_sivaldo.consultar_historico_transacoes()
-
-print('-'*29)
-#criar contacorrente da mae
-conta_mae = ContaCorrente("Maria", "333.222.444-44", 235, 2345)
-#tranferir valor do sivaldo para a mae
-conta_sivaldo.transferir(1000, conta_mae)
-
-print('-'*29)
-conta_sivaldo.consultar_saldo()
-conta_mae.consultar_saldo()
-
-print('-'*29)
-conta_sivaldo.consultar_historico_transacoes()
-print('-'*29)
-conta_mae.consultar_historico_transacoes()
-
-help(ContaCorrente)
+print(conta_sivaldo._cartoes[0].numero)#indice 0 da classe CartaoCredito

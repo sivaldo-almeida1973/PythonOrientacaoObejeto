@@ -2,6 +2,7 @@
 import time
 from datetime import datetime
 import pytz
+from random import randint
 
 class ContaCorrente():
     """
@@ -34,7 +35,7 @@ class ContaCorrente():
         self._agencia = agencia
         self._num_conta = num_conta
         self._transacoes = []
-        self._cartoes = []
+        self.cartoes = []
 
     #metodo consultar saldo
     def consultar_saldo(self):
@@ -78,14 +79,21 @@ class ContaCorrente():
         conta_destino._transacoes.append((valor, conta_destino._saldo, ContaCorrente._data_hora()))
 
 class CartaoCredito:
+
+    @staticmethod
+    def _data_hora():
+        fuso_BR = pytz.timezone('Brazil/East')
+        horario_BR = datetime.now((fuso_BR))
+        return horario_BR
+
     def __init__(self, titular, conta_corrente):
-        self.numero = 123
+        self.numero = randint(100000000000, 999999999999)
         self.titular = titular
-        self.validade = None
-        self.cod_seguranca = None
-        self.limite = None
+        self.validade = 'Mês:{}/Ano:{}'.format(CartaoCredito._data_hora().month , CartaoCredito._data_hora().year + 4)
+        self.cod_seguranca = '{}{}{}'.format(randint(0,9),randint(0,9),randint(0,9))
+        self.limite = 1000
         self.conta_corrente = conta_corrente
-        conta_corrente._cartoes.append(self) # self pega toda instacnia da classe  CartaoCredito e adiciona em cartoes
+        conta_corrente.cartoes.append(self) # self pega toda instacnia da classe  CartaoCredito e adiciona em cartoes
         #conta_corrente._cartoes.append(self.numero) # self pega somente o numero e adiciona em cartoes
 
 
@@ -97,5 +105,7 @@ conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", 222-34, 340)
 cartao_sivaldo = CartaoCredito('Sivaldo', conta_sivaldo)
 print(cartao_sivaldo.conta_corrente._num_conta)
 print(cartao_sivaldo.titular)
+print('Num Cartao',cartao_sivaldo.numero)
 
-print(conta_sivaldo._cartoes[0].numero)#indice 0 da classe CartaoCredito
+print("validade",cartao_sivaldo.validade)
+print("codigo",cartao_sivaldo.cod_seguranca)

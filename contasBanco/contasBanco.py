@@ -121,5 +121,12 @@ print("validade",cartao_sivaldo.validade)
 print("codigo",cartao_sivaldo.cod_seguranca)
 
 
+conta_sivaldo.nome = 'sivaldo vieira'
+print(conta_sivaldo)
+
 cartao_sivaldo.senha = '1256'
 print(cartao_sivaldo.senha)
+
+#consultar todos os valores da conta
+print(conta_sivaldo.__dict__)
+print(cartao_sivaldo.__dict__)

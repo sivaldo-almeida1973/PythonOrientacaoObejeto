@@ -28,12 +28,12 @@ class ContaCorrente():
 
      #funcao par criar conta, o que precisa
     def __init__(self, nome, cpf, agencia, num_conta):
-        self._nome = nome
-        self._cpf = cpf
+        self.nome = nome
+        self.cpf = cpf
         self._saldo = 0
         self._limite = None
-        self._agencia = agencia
-        self._num_conta = num_conta
+        self.agencia = agencia
+        self.num_conta = num_conta
         self._transacoes = []
         self.cartoes = []
 
@@ -92,20 +92,34 @@ class CartaoCredito:
         self.validade = 'Mês:{}/Ano:{}'.format(CartaoCredito._data_hora().month , CartaoCredito._data_hora().year + 4)
         self.cod_seguranca = '{}{}{}'.format(randint(0,9),randint(0,9),randint(0,9))
         self.limite = 1000
+        self._senha = '1234'
         self.conta_corrente = conta_corrente
         conta_corrente.cartoes.append(self) # self pega toda instacnia da classe  CartaoCredito e adiciona em cartoes
         #conta_corrente._cartoes.append(self.numero) # self pega somente o numero e adiciona em cartoes
+    @property   #pega o valor da nova senha getter
+    def senha(self):
+        return self._senha
 
-
+    @senha.setter  #valida a nova senha  setter
+    def senha(self, valor):
+        if len(valor) ==4 and valor.isnumeric():
+            self._senha = valor
+        else:
+            print('Nova senha inválida!')
 
 
 #programa principal
 #criar uma instancia da class ContaCorrente
 conta_sivaldo = ContaCorrente("sivaldo", "111.222.333-44", 222-34, 340)
 cartao_sivaldo = CartaoCredito('Sivaldo', conta_sivaldo)
-print(cartao_sivaldo.conta_corrente._num_conta)
+
+
 print(cartao_sivaldo.titular)
 print('Num Cartao',cartao_sivaldo.numero)
 
 print("validade",cartao_sivaldo.validade)
 print("codigo",cartao_sivaldo.cod_seguranca)
+
+
+cartao_sivaldo.senha = '1256'
+print(cartao_sivaldo.senha)

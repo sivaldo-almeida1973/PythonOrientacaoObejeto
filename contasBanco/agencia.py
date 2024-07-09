@@ -24,9 +24,12 @@ class Agencia:
     def adicionar_cliente(self, nome, cpf, patrimonio):
         self.clientes.append((nome, cpf, patrimonio))
 
-#herança-----------------------subclass
+#herança-----------------------subclass herda da super classe
 class AgenciaVirtual(Agencia):
-    pass
+    def __init__(self, site, telefone, cnpj):
+        self.site = site
+        super().__init__(telefone, cnpj, 1000)# chama o init da super classe
+        self.caixa = 1000000
 
 class AgenciaComum(Agencia):
     pass
@@ -39,14 +42,12 @@ class AgenciaPremium(Agencia):
 
 agencia1 = Agencia(22223333, 123546545, 4565)
 
-agencia_virtual = AgenciaVirtual(22224444, 1520000000, 1000)
-agencia_virtual.caixa = 15000
+agencia_virtual = AgenciaVirtual('www.agenciaVirtual.com.br', 22224444, 1520000000)
 agencia_virtual.verificar_caixa()
+print(agencia_virtual.caixa)
 
 
-agencia_premium = AgenciaVirtual(22225555, 1520000000, 1234)
-agencia_premium.caixa = 100000
-agencia_premium.verificar_caixa()
+
 
 
 

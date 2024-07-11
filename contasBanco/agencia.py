@@ -1,3 +1,5 @@
+from random import randint
+
 class Agencia:
   #metodo de inicializacao
     def __init__(self, telefone, cnpj, numero_ag):
@@ -32,11 +34,16 @@ class AgenciaVirtual(Agencia):
         self.caixa = 1000000
 
 class AgenciaComum(Agencia):
-    pass
+    def __init__(self, telefone, cnpj):
+        super().__init__(telefone, cnpj , numero_ag=randint(1001, 9999))
+        self.caixa = 1000000
 
 
 class AgenciaPremium(Agencia):
-    pass
+       def __init__(self, telefone, cnpj):
+        super().__init__(telefone, cnpj , numero_ag=randint(1001, 9999))
+        self.caixa = 10000000
+
 
 
 
@@ -45,8 +52,14 @@ agencia1 = Agencia(22223333, 123546545, 4565)
 agencia_virtual = AgenciaVirtual('www.agenciaVirtual.com.br', 22224444, 1520000000)
 agencia_virtual.verificar_caixa()
 print(agencia_virtual.caixa)
+print(agencia_virtual.site)
 
 
+agencia_comum = AgenciaComum(22225555, 2550000000)
+agencia_comum.verificar_caixa()
+
+agencia_premium = AgenciaPremium(222226666, 55500000000)
+agencia_premium.verificar_caixa()
 
 
 

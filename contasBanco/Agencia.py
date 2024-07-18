@@ -60,39 +60,40 @@ class AgenciaPremium(Agencia):
                print('O cliente não possui o patrimônio minimo para entrar nesta agência Premium!')
 
 
+if __name__ == '__main__':  #impede de rodar o codigo abaixo, quando for chamado no main
 
-agencia1 = Agencia(22223333, 123546545, 4565)
+    agencia1 = Agencia(22223333, 123546545, 4565)
 
-agencia_virtual = AgenciaVirtual('www.agenciaVirtual.com.br', 22224444, 1520000000)
-agencia_virtual.verificar_caixa()
-# print(agencia_virtual.caixa)
-# print(agencia_virtual.site)
-
-
-agencia_comum = AgenciaComum(22225555, 2550000000)
-# agencia_comum.verificar_caixa()
-
-agencia_premium = AgenciaPremium(222226666, 55500000000)
-# agencia_premium.verificar_caixa()
-
-agencia_virtual.depositar_paypal(20000)
-print(agencia_virtual.caixa)
-print(agencia_virtual.caixa_paypal)
+    agencia_virtual = AgenciaVirtual('www.agenciaVirtual.com.br', 22224444, 1520000000)
+    agencia_virtual.verificar_caixa()
+    # print(agencia_virtual.caixa)
+    # print(agencia_virtual.site)
 
 
-agencia_premium.adicionar_cliente('lice', 1450000000, 10000001)
-print(agencia_premium.clientes)
+    agencia_comum = AgenciaComum(22225555, 2550000000)
+    # agencia_comum.verificar_caixa()
+
+    agencia_premium = AgenciaPremium(222226666, 55500000000)
+    # agencia_premium.verificar_caixa()
+
+    agencia_virtual.depositar_paypal(20000)
+    print(agencia_virtual.caixa)
+    print(agencia_virtual.caixa_paypal)
 
 
-agencia_comum.adicionar_cliente('Sivaldo', 10000000000, 100)
-print(agencia_comum.clientes)
-# agencia1.caixa = 100000000
-#
-# agencia1.verificar_caixa()
-#
-# agencia1.emprestar_dinheiro(1500, 12345678912, 0.02)
-# print(agencia1.emprestimos)
-#
-# #adicionar cliente
-# agencia1.adicionar_cliente('Lucas', 123456789012, 10000)
-# print(agencia1.clientes)
+    agencia_premium.adicionar_cliente('lice', 1450000000, 10000001)
+    print(agencia_premium.clientes)
+
+
+    agencia_comum.adicionar_cliente('Sivaldo', 10000000000, 100)
+    print(agencia_comum.clientes)
+    # agencia1.caixa = 100000000
+    #
+    # agencia1.verificar_caixa()
+    #
+    # agencia1.emprestar_dinheiro(1500, 12345678912, 0.02)
+    # print(agencia1.emprestimos)
+    #
+    # #adicionar cliente
+    # agencia1.adicionar_cliente('Lucas', 123456789012, 10000)
+    # print(agencia1.clientes)
